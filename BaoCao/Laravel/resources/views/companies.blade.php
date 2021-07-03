@@ -1,6 +1,7 @@
 @extends('layouts.page')
 @section('content')
     <!--Main!-->
+    {{-- @dd($company); --}}
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item dropdown">
             <a style="color: darkgray" class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
@@ -87,22 +88,24 @@
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="" method="post">
-                    @csrf
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete Companies</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Bạn có chắc chắn xóa ?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" value="Delete" class="btn btn-success" name="submitDelete">
-                    </div>
-                </form>
+
+                    <form action="" method="get">
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete Companies</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Bạn có chắc chắn xóa ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit"  class="btn btn-success" name="submitDelete">Delete</button>
+                        </div>
+                    </form>
+
             </div>
         </div>
     </div>
@@ -120,6 +123,7 @@
         <tbody>
             @foreach ($companies as $company)
                 <tr>
+                    <td style='display:none' value="{{ $company->company_id}}"></td>
                     <td>
                         <p>{{ $company->company_name }}</p>
                     </td>
@@ -138,7 +142,7 @@
                     <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formEditCompany">
                             Edit
                         </button></td>
-                    <td> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#formDeleteCompany">
+                    <td> <button type="button" class="btn btn-danger" name="delete" data-toggle="modal" data-target="#formDeleteCompany">
                             Delete
                         </button></td>
                 </tr>

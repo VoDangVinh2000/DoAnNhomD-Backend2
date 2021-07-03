@@ -31,4 +31,5 @@ class CompaniesController extends Controller
     }
 
     //
+
 }

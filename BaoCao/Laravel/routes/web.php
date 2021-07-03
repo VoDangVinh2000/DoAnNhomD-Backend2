@@ -18,6 +18,8 @@ Route::fallback(function(){
     return 'Not found';
 });
 Route::get('category',[CategoriesController::class,'getCategory'])->middleware('per_page');
+
+
 // Route:
 //authentication
 Route::get('dashboard', [CustomAuthController::class, 'dashboard']);
