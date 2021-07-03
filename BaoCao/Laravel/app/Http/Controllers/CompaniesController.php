@@ -29,4 +29,6 @@ class CompaniesController extends Controller
             return redirect('/login');
         }
     }
+
+    //
 }

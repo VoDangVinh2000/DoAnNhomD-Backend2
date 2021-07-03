@@ -17,6 +17,13 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Link css-->
+    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+
+    <!-- Link fontawsesome -->
+    <script src="{{ URL::asset('js/fontawesome.js') }}"></script>
+
 </head>
 
 <body>

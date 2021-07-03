@@ -118,7 +118,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($companies as $company):
+            @foreach ($companies as $company)
                 <tr>
                     <td>
                         <p>{{ $company->company_name }}</p>
