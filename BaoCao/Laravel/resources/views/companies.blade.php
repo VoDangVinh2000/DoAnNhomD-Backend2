@@ -119,7 +119,6 @@
         <tbody>
             @foreach ($companies as $company)
                 <tr>
-                    {{-- <td style='display:none' value="{{ $company->company_id}}"></td> --}}
                     <td>
                         <p>{{ $company->company_name }}</p>
                     </td>
@@ -135,9 +134,12 @@
                     <td>
                         <p>{{ $company->company_phone }}</p>
                     </td>
-                    <td> <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#formEditCompany">
-                        <i class="far fa-edit"></i>
-                        </button></td>
+                    <td>
+                        <form action="" method="get">
+                            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#formEditCompany">
+                                <i class="far fa-edit"></i>
+                            </button></td>
+                        </form>
                     <td>
                         <form action="{{asset('')}}companies/{{$company->company_id}}" method="post" onsubmit="return confirm('Bạn có muốn xóa không!')">
                             {{csrf_field()}}

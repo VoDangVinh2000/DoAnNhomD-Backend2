@@ -10,7 +10,7 @@ class DeleteController extends Controller
 {
     public function destroy($id)
     {
-        $obj= new Companies();
+        $obj = new Companies();
         $obj->where('company_id',$id)->delete();
        return redirect('companies');
 

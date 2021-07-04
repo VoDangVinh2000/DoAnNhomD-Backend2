@@ -7,6 +7,8 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DeleteController;
+use App\Http\Controllers\EditingController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,5 +34,6 @@ Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout')
 
 //
 Route::delete('companies/{id}', [DeleteController::class, 'destroy']);
+
 
 
