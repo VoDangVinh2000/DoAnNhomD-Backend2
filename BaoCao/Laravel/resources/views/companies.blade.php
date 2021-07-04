@@ -3,14 +3,11 @@
     <!--Main!-->
     {{-- @dd($company); --}}
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item dropdown">
-            <a style="color: darkgray" class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">Chức năng</a>
-            <div class="dropdown-menu" aria-labelledby="dropdownId">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formAddCompany">
-                    Add company
-                </button>
-            </div>
+        <li class="nav-item add-companies">
+            <label for="">Add Companies</label>
+            <button type="button" class="btn btn-outline-secondary add" data-toggle="modal" data-target="#formAddCompany">
+                <i class="fas fa-plus"></i>
+            </button>
         </li>
     </ul>
     <!--Add!-->
@@ -138,16 +135,15 @@
                     <td>
                         <p>{{ $company->company_phone }}</p>
                     </td>
-                    <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formEditCompany">
-                            Edit
+                    <td> <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#formEditCompany">
+                        <i class="far fa-edit"></i>
                         </button></td>
                     <td>
-                        <!-- data-toggle="modal" data-target="#formDeleteCompany" -->
                         <form action="{{asset('')}}companies/{{$company->company_id}}" method="post" onsubmit="return confirm('Bạn có muốn xóa không!')">
                             {{csrf_field()}}
                             {{method_field('delete')}}
-                            <button type="submit" class="btn btn-danger" name="delete" >
-                                Delete
+                            <button type="submit" class="btn btn-outline-danger" name="delete" >
+                                <i class="far fa-trash-alt"></i>
                             </button>
                         </form>
 
