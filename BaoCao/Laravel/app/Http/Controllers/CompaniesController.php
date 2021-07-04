@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 class CompaniesController extends Controller
 {
+
     public function getCompanies(Request $request){
         $per_page = $request->input('per_page');
         $obj = new Companies();

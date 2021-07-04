@@ -6,6 +6,7 @@ use App\Http\Controllers\TrainerController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\DeleteController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,7 +18,7 @@ Route::get('search',[SearchController::class,'search'])->middleware('per_page');
 Route::fallback(function(){
     return 'Not found';
 });
-Route::get('category',[CategoriesController::class,'getCategory'])->middleware('per_page');
+Route::get('category',[CategoriesController::class,'getCategory']);
 
 
 // Route:
@@ -28,5 +29,8 @@ Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name(
 Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
+
+//
+Route::delete('companies/{id}', [DeleteController::class, 'destroy']);
 
 

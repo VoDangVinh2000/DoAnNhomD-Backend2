@@ -88,7 +88,6 @@
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-
                     <form action="" method="get">
                         @csrf
                         <div class="modal-header">
@@ -123,7 +122,7 @@
         <tbody>
             @foreach ($companies as $company)
                 <tr>
-                    <td style='display:none' value="{{ $company->company_id}}"></td>
+                    {{-- <td style='display:none' value="{{ $company->company_id}}"></td> --}}
                     <td>
                         <p>{{ $company->company_name }}</p>
                     </td>
@@ -142,9 +141,17 @@
                     <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formEditCompany">
                             Edit
                         </button></td>
-                    <td> <button type="button" class="btn btn-danger" name="delete" data-toggle="modal" data-target="#formDeleteCompany">
-                            Delete
-                        </button></td>
+                    <td>
+                        <!-- data-toggle="modal" data-target="#formDeleteCompany" -->
+                        <form action="{{asset('')}}companies/{{$company->company_id}}" method="post" onsubmit="return confirm('Bạn có muốn xóa không!')">
+                            {{csrf_field()}}
+                            {{method_field('delete')}}
+                            <button type="submit" class="btn btn-danger" name="delete" >
+                                Delete
+                            </button>
+                        </form>
+
+                    </td>
                 </tr>
             @endforeach
         </tbody>

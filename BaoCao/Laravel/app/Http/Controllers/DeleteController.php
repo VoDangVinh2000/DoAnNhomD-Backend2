@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 
 class DeleteController extends Controller
 {
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $obj = new Companies();
-        $id = $request->get('id');
-        $companies = $obj->where('company_id',[$id]);
+       //$companies = Companies::find($id)->delete();
+        $obj= new Companies();
+        $obj->where('company_id',$id)->delete();
+       return redirect('companies');
+
     }
 }
