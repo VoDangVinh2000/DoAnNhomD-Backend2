@@ -25,6 +25,7 @@ class companiesSeeder extends Seeder
                 'company_address' => Str::random(50),
                 'company_code' => Str::random(10),
                 'company_phone' => Str::random(10),
+                'company_image' => Str::random(5) . "jpg"
             ]);
         }
 

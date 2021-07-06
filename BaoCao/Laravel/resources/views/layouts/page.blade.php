@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container">
         <!--Header!-->
         @include('layouts.header')
         <!--Main!-->
