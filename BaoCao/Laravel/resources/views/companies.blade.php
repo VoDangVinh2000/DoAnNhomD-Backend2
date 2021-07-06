@@ -108,11 +108,11 @@
     <table class="table">
         <thead>
             <tr>
-                <th class="scope">Company_name</th>
-                <th class="scope">Company_web</th>
-                <th class="scope">Company_address</th>
-                <th class="scope">Company_code</th>
-                <th class="scope">Company_phone</th>
+                <th class="scope">Company Name</th>
+                <th class="scope">Company Web</th>
+                <th class="scope">Company Address</th>
+                <th class="scope">Company Code</th>
+                <th class="scope">Company Phone</th>
                 <th class="scope" colspan="2">Action</th>
             </tr>
         </thead>
