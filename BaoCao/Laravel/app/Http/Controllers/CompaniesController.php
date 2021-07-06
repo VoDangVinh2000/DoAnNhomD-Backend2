@@ -42,6 +42,7 @@ class CompaniesController extends Controller
                 'company_address' =>$address,
                 'company_code' =>$code,
                 'company_phone' => $phone,
+                'company_image' => "",
                 'timestamp' => now()
             ]);
             return redirect('companies');
