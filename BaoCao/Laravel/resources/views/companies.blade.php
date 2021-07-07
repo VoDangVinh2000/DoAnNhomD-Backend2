@@ -2,7 +2,6 @@
 @section('content')
     <div class="companies-main">
         <!--Main!-->
-
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item dropdown">
                 <a style="color: black" class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
@@ -90,16 +89,34 @@
                             <div class="form-group">
                                 <input type="hidden" name="idEdit" value="">
                                 <h5>Company name</h5>
-                                <input type="text" class="form-control" name="nameEdit" required>
+                                @if ($errors->has('nameEdit'))
+                                    <p class="error" style="color: red">{{ $errors->first('nameEdit') }}</p>
+                                @endif
+                                <input type="text" class="form-control" value="{{ old('nameEdit') }}" name="nameEdit">
                                 <h5>Company web</h5>
-                                <input type="text" name="webEdit" class="form-control" required>
+                                @if ($errors->has('webEdit'))
+                                    <p class="error" style="color: red">{{ $errors->first('webEdit') }}</p>
+                                @endif
+                                <input type="text" name="webEdit" value="{{ old('webEdit') }}" class="form-control">
                                 <h5>Company address</h5>
-                                <input type="text" name="addressEdit" class="form-control" required>
+                                @if ($errors->has('addressEdit'))
+                                    <p class="error" style="color: red">{{ $errors->first('addressEdit') }}</p>
+                                @endif
+                                <input type="text" name="addressEdit" value="{{ old('addressEdit') }}" class="form-control">
                                 <h5>Company code</h5>
-                                <input type="text" name="codeEdit" class="form-control" required>
+                                @if ($errors->has('codeEdit'))
+                                    <p class="error" style="color: red">{{ $errors->first('codeEdit') }}</p>
+                                @endif
+                                <input type="text" name="codeEdit" value="{{ old('codeEdit') }}" class="form-control">
                                 <h5>Company phone</h5>
-                                <input type="tel" name="phoneEdit" class="form-control" required>
+                                @if ($errors->has('phoneEdit'))
+                                    <p class="error" style="color: red">{{ $errors->first('phoneEdit') }}</p>
+                                @endif
+                                <input type="tel" name="phoneEdit" value="{{ old('phoneEdit') }}" class="form-control"s>
                                 <h5>Company_image</h5>
+                                @if ($errors->has('imageFile'))
+                                    <p class="error" style="color: red">{{ $errors->first('imageFile') }}</p>
+                                @endif
                                 <input type="file" name="imageFile">
                             </div>
                         </div>
@@ -170,8 +187,8 @@
             @foreach ($companies as $company)
                 <div class="col-md-6">
                     <div class="card" style="width: 23rem;;overflow:hidden;word-break: break-all">
-                        <img {{--class="card-img-top"--}}s style="height: 350px;object-fit: " src="{{ asset('/storage/images/' . $company->company_image . ' ') }}"
-                            alt="companies-image">
+                        <img {{-- class="card-img-top" --}}s style="height: 350px;object-fit: "
+                            src="{{ asset('/storage/images/' . $company->company_image . ' ') }}" alt="companies-image">
                         <div class="card-body">
                             <input type="hidden" name="idC" value="{{ $company->company_id }}">
                             <div class="row">

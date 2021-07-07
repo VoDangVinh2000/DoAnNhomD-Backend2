@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -48,25 +47,40 @@ class CompaniesController extends Controller
     protected function editCompanies(Request $res)
     {
         if ($res->isMethod('post')) {
-            $companies = Companies::find($res->idEdit);
-            $companies->company_name = $res->nameEdit;
-            $companies->company_code = $res->codeEdit;
-            $companies->company_phone = $res->phoneEdit;
-            $companies->company_address = $res->addressEdit;
-            $companies->company_web = $res->webEdit;
-            $companies->updated_at = now();
-            if ($res->hasFile('imageFile')) {
-                $res->validate([
-                    'image' => 'required|image|mimes:png,jpg,gif,svg'
-                ]);
-                $originalType = $res->imageFile->getClientOriginalExtension(); //png or ...
-                $fileName = $_FILES['imageFile']['name']; //Bungary.jpg
-                dd($fileName);
-                //$res->move('storage/images/',$fileName);
-                //$companies->company_image = $fileName;
+            $allValue = Validator::make($res->all(), [
+                'nameEdit' => 'required|',
+                'webEdit' => 'required',
+                'addressEdit' => 'required',
+                'codeEdit' => 'required|',
+                'phoneEdit' => 'required|min:10|max:10|regex:/^[0-9]+$/',
+                'imageFile' => 'required|image|mimes:png,jpg,jpeg,gif,tif,eps|'
+            ]);
+            if ($allValue->fails()) {
+                return redirect('/companies')->withErrors($allValue)->withInput();
             }
-            //  $companies->save();
-            // return redirect('/companies')->with(['message' => 'Đã lưu']);
+            else {
+                $companies = Companies::find($res->input('idEdit'));
+                $companies->company_name = $res->input('nameEdit');
+                $companies->company_code = $res->input('codeEdit');
+                $companies->company_phone =  $res->input('phoneEdit');
+                $companies->company_address =  $res->input('addressEdit');
+                $companies->company_web =  $res->input('webEdit');
+                $companies->updated_at = now();
+                $oldPath = "storage/images/" . $companies->company_image;
+                $file = $res->file('imageFile');
+                if (file_exists($oldPath)) {
+                    unlink($oldPath);
+                    $companies->company_image = $_FILES['imageFile']['name'];
+                    $companies->save();
+                    $file->move("storage/images/", $_FILES['imageFile']['name']);
+                    return redirect('/companies')->with( ['message' => 'Đã sửa.']);
+                } else {
+                    $companies->company_image = $_FILES['imageFile']['name'];
+                    $companies->save();
+                    $file->move("storage/images/", $_FILES['imageFile']['name']);
+                    return redirect('/companies')->with(['message' => 'Đã sửa.']);
+                }
+            }
         } else {
             return redirect('/companies');
         }
@@ -74,9 +88,8 @@ class CompaniesController extends Controller
     protected function addCompanies(Request $res)
     {
         if ($res->isMethod('post')) {
-
             $allValue = Validator::make($res->all(), [
-                'name' => 'required|unique:companies,company_name',
+                'name' => 'required|',
                 'web' => 'required',
                 'address' => 'required',
                 'code' => 'required|',
@@ -85,9 +98,7 @@ class CompaniesController extends Controller
             ]);
             if ($allValue->fails()) {
                 return redirect('/companies')->withErrors($allValue)->withInput();
-            }
-            else {
-
+            } else {
                 $path = "storage/images/" . $_FILES['image']['name'];
                 if (file_exists($path)) {
                     return redirect('/companies')->with(['message' => 'Tên ảnh đã tồn tại.']);
@@ -101,12 +112,11 @@ class CompaniesController extends Controller
                         'company_image' => $_FILES['image']['name']
                     ]);
                     $image = $res->file('image');
-                    $image->move('storage/images/',$_FILES['image']['name']);
+                    $image->move('storage/images/', $_FILES['image']['name']);
                     return redirect('/companies')->with(['message' => 'Đã thêm']);
                 }
             }
-        }
-        else {
+        } else {
             return redirect('/companies');
         }
     }

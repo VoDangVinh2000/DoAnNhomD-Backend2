@@ -13,7 +13,7 @@ class Companies extends Authenticatable
     public $timestamps = true;
     protected $primaryKey = 'company_id';
     protected $fillable = [
-        'company_name','company_web','company_address','company_code','company_phone'
+        'company_name','company_web','company_address','company_code','company_phone','company_image'
     ];
     use HasFacTory, Notifiable;
 }
