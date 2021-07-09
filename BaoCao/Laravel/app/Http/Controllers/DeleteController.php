@@ -11,8 +11,8 @@ class DeleteController extends Controller
     public function destroy($id)
     {
         $obj = new Companies();
-        $obj->where('company_id',$id)->delete();
-       return redirect('companies');
-
+        $obj->where('company_id', $id)->delete();
+        $alertDel = 'Delete Company Success !!! ';
+        return redirect('companies')->with('alertDel', $alertDel);
     }
 }

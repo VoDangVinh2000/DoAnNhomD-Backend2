@@ -15,8 +15,5 @@ class SearchController extends Controller
         $companies = $obj->where('company_name','like',"%$name%")->paginate($per_page);
           $companies->appends(['name' => $name]);
         return view('search',['companies' => $companies]);
-      //  echo "aaa";
-        // $companies =  DB::table('companies')->simplePaginate(5);
-        // return view('companies',['companies' =>  $companies]);
     }
 }

@@ -11,11 +11,21 @@
         </li>
     </ul>
     <!--Add!-->
+
+@if(session('alertAdd'))
+    <section class='alert alert-success '>{{session('alertAdd')}}</section>
+@endif  
+@if(session('alertDel'))
+    <section class='alert alert-warning '>{{session('alertDel')}}</section>
+@endif 
+@if(session('alertEdit'))
+    <section class='alert alert-warning '>{{session('alertEdit')}}</section>
+@endif 
     <div class="modal fade" id="formAddCompany" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="" method="post">
+                <form action="{{route('addCompanies')}}" method="post">
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Add Companies</h5>
@@ -42,66 +52,6 @@
                         <input type="submit" value="Add" class="btn btn-success" name="submitAdd">
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
-    <!--Edit!-->
-    <div class="modal fade" id="formEditCompany" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form action="" method="post">
-                    @csrf
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Companies</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <h5>Company name</h5>
-                            <input type="text" class="form-control" name="name" id="" required>
-                            <h5>Company web</h5>
-                            <input type="text" name="web" class="form-control" id="" required>
-                            <h5>Company address</h5>
-                            <input type="text" name="address" class="form-control" id="" required>
-                            <h5>Company code</h5>
-                            <input type="text" name="code" class="form-control" id="" required>
-                            <h5>Company phone</h5>
-                            <input type="tel" name="phone" class="form-control" id="" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" value="Edit" class="btn btn-success" name="submitEdit">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!--Delete!-->
-    <div class="modal fade" id="formDeleteCompany" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                    <form action="" method="get">
-                        @csrf
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Delete Companies</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Bạn có chắc chắn xóa ?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit"  class="btn btn-success" name="submitDelete">Delete</button>
-                        </div>
-                    </form>
-
             </div>
         </div>
     </div>
@@ -136,7 +86,7 @@
                     </td>
                     <td>
                         <form action="" method="get">
-                            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#formEditCompany">
+                            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#formEditCompany{{$company->company_id}}">
                                 <i class="far fa-edit"></i>
                             </button></td>
                         </form>
@@ -151,6 +101,42 @@
 
                     </td>
                 </tr>
+                <!-- Edit -->
+                <div class="modal fade" id="formEditCompany{{$company->company_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form action="{{ route ('editCompanies.update',$company->company_id)}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit Companies</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+
+                                        <h5>Company name</h5>
+                                        <input type="text" class="form-control" name="edit-name" value="{{$company->company_name}}" required>
+                                        <h5>Company web</h5>
+                                        <input type="text" name="edit-web" class="form-control" value="{{$company->company_web}}" id="" required>
+                                        <h5>Company address</h5>
+                                        <input type="text" name="edit-address" class="form-control" value="{{$company->company_address}}" id="" required>
+                                        <h5>Company code</h5>
+                                        <input type="text" name="edit-code" class="form-control" value="{{$company->company_code}}" id="" required>
+                                        <h5>Company phone</h5>
+                                        <input type="tel" name="edit-phone" class="form-control" value="{{$company->company_phone}}" id="" required minlength="10" maxlength="10" pattern="^[0-9]+$">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <input type="submit" value="Save" class="btn btn-success" name="submitEdit">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             @endforeach
         </tbody>
     </table>

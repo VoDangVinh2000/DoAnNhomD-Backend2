@@ -32,8 +32,10 @@ Route::get('registration', [CustomAuthController::class, 'registration'])->name(
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
-//
+// Delete
 Route::delete('companies/{id}', [DeleteController::class, 'destroy']);
-
-
+//Add
+Route::post('addCompanies', [CompaniesController::class, 'addCompanies'])->name('addCompanies');
+//Edit
+Route::post('editCompanies/{id}', [CompaniesController::class, 'editCompanies'])->name('editCompanies.update');
 
