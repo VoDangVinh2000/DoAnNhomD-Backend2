@@ -16,11 +16,12 @@ use function PHPUnit\Framework\fileExists;
 
 class CompaniesController extends Controller
 {
-    protected function getCompanies(Request $request)
-    {
-        // $per_page = $request->input('per_page');
+      // $per_page = $request->input('per_page');
         // $obj = new Companies();
         //$companies = $obj->paginate($per_page);
+    protected function getCompanies(Request $request)
+    {
+
         $name = $request->get('search');
         //dd($name);
         $companies = Companies::whereRaw('company_name LIKE "%' . $name . '%" ')->paginate(6)->withQueryString();
@@ -32,12 +33,12 @@ class CompaniesController extends Controller
         if ($res->isMethod('get')) {
             if ($res->selectSort == 0) {
                 $companies = Companies::whereRaw('company_name LIKE "%' . $name . '%"')->orderBy('created_at', 'ASC')
-                    ->paginate(5)->withQueryString();
+                    ->paginate(6)->withQueryString();
 
                 return view('companies', ['companies' => $companies]);
             } else {
                 $companies = Companies::orderBy('created_at', 'DESC')
-                    ->paginate(5)->withQueryString();
+                    ->paginate(6)->withQueryString();
                 return view('companies', ['companies' => $companies]);
             }
         } else {
