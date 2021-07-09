@@ -1,5 +1,8 @@
 @extends('layouts.page')
 @section('content')
+<div class="title-content">
+    <h1 class="h-title">Companies</h1>
+</div>
     <!--Main!-->
     {{-- @dd($company); --}}
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -21,7 +24,7 @@
 @if(session('alertEdit'))
     <section class='alert alert-warning '>{{session('alertEdit')}}</section>
 @endif 
-    <div class="modal fade" id="formAddCompany" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade form-add" id="formAddCompany" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -35,16 +38,26 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <h5>Company name</h5>
-                            <input type="text" class="form-control" name="name" id="" required>
-                            <h5>Company web</h5>
-                            <input type="text" name="web" class="form-control" id="" required>
-                            <h5>Company address</h5>
-                            <input type="text" name="address" class="form-control" id="" required>
-                            <h5>Company code</h5>
-                            <input type="text" name="code" class="form-control" id="" required>
-                            <h5>Company phone</h5>
-                            <input type="tel" name="phone" class="form-control" id="" required>
+                            <div class="form-div">
+                                <input type="text" class="form-control" name="name" id="" required placeholder=" ">
+                                <label for="" class="form-lable">Company Name</label>
+                            </div>
+                            <div class="form-div">
+                                <input type="text" name="web" class="form-control" id="" required placeholder=" ">
+                                <label for="" class="form-lable">Company Web</label>
+                            </div>
+                            <div class="form-div">
+                                <input type="text" name="address" class="form-control" id="" required placeholder=" ">
+                                <label for="" class="form-lable">Company Address</label>
+                            </div>
+                            <div class="form-div">
+                                <input type="text" name="code" class="form-control" id="" required placeholder=" ">
+                                <label for="" class="form-lable">Company Code</label>
+                            </div>
+                            <div class="form-div">
+                                <input type="tel" name="phone" class="form-control" id="" required placeholder=" " minlength="10" maxlength="10" pattern="^[0-9]+$">
+                                <label for="" class="form-lable">Company Phone</label>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -88,8 +101,9 @@
                         <form action="" method="get">
                             <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#formEditCompany{{$company->company_id}}">
                                 <i class="far fa-edit"></i>
-                            </button></td>
+                            </button>
                         </form>
+                    </td>
                     <td>
                         <form action="{{asset('')}}companies/{{$company->company_id}}" method="post" onsubmit="return confirm('Bạn có muốn xóa không!')">
                             {{csrf_field()}}
@@ -98,11 +112,10 @@
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </form>
-
                     </td>
                 </tr>
                 <!-- Edit -->
-                <div class="modal fade" id="formEditCompany{{$company->company_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                <div class="modal fade form-edit" id="formEditCompany{{$company->company_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">

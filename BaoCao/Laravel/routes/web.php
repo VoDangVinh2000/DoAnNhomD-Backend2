@@ -32,10 +32,19 @@ Route::get('registration', [CustomAuthController::class, 'registration'])->name(
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
-// Delete
+// Delete Company
 Route::delete('companies/{id}', [DeleteController::class, 'destroy']);
-//Add
+//Add Company
 Route::post('addCompanies', [CompaniesController::class, 'addCompanies'])->name('addCompanies');
-//Edit
+//Edit Company
 Route::post('editCompanies/{id}', [CompaniesController::class, 'editCompanies'])->name('editCompanies.update');
+
+
+
+// Delete Trainer
+Route::delete('trainers/{id}', [DeleteController::class, 'destroyTrainer']);
+//Edit Trainer
+Route::post('editTrainer/{id}', [TrainerController::class, 'editTrainer'])->name('editTrainer.update');
+//Add Trainer
+Route::post('addTrainer', [TrainerController::class, 'addTrainer'])->name('addTrainer');
 

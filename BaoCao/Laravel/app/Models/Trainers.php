@@ -10,6 +10,8 @@ use Illuminate\Notifications\Notifiable;
 class Trainers extends Authenticatable
 {
     protected $table = 'trainers';
+    protected $primaryKey = 'trainer_id';
+    protected $fillable = ['trainer_name','company_id', 'trainer_email','is_leader','user_id','trainer_phone'];
     use HasFacTory, Notifiable;
 
 }
