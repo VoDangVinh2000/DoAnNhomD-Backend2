@@ -19,6 +19,7 @@ Route::fallback(function(){
 });
 Route::get('category',[CategoriesController::class,'getCategory'])->middleware('per_page');
 // Route:
+Route::post('edit', [CompaniesController::class, 'editCompanies'])->name('editCompanies');
 //authentication
 Route::get('dashboard', [CustomAuthController::class, 'dashboard']);
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');

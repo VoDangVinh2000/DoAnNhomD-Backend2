@@ -12,6 +12,51 @@
             </div>
         </li>
     </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="scope">Company_name</th>
+                <th class="scope">Company_web</th>
+                <th class="scope">Company_address</th>
+                <th class="scope">Company_code</th>
+                <th class="scope">Company_phone</th>
+                <th class="scope" colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($companies as $company):
+
+                <tr>
+                    <td>
+                        <p>{{ $company->company_name }}</p>
+                    </td>
+                    <td>
+                        <p>{{ $company->company_web }}</p>
+                    </td>
+                    <td>
+                        <p>{{ $company->company_address }}</p>
+                    </td>
+                    <td>
+                        <p>{{ $company->company_code }}</p>
+                    </td>
+                    <td>
+                        <p>{{ $company->company_phone }}</p>
+                    </td>
+                    <?php $id = $company['company_id'];?>
+                    <input type="hidden" id="custId" name="custId" value=" <?php echo $company['company_id'];?>">
+                    <td> <button type="button" id="edit" class="btn btn-primary" data-toggle="modal" data-target="#formEditCompany">
+                            Edit
+                            
+                        </button></td>
+                    <td> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#formDeleteCompany">
+                            Delete
+                        </button></td>
+                </tr>
+            @endforeach
+
+        </tbody>
+    </table>
+    <?php echo $companies->render(); ?>
     <!--Add!-->
     <div class="modal fade" id="formAddCompany" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -54,6 +99,7 @@
             <div class="modal-content">
                 <form action="" method="post">
                     @csrf
+
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Edit Companies</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -62,16 +108,22 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
+                           
+                            @foreach($companies as $company)
+
+                            @if($company['company_id'] == 1)
                             <h5>Company name</h5>
-                            <input type="text" class="form-control" name="name" id="" required>
+                            <input type="text" class="form-control" name="name" id="" value="{!! $company['company_name'] !!}" required>
                             <h5>Company web</h5>
-                            <input type="text" name="web" class="form-control" id="" required>
+                            <input type="text" name="web" class="form-control" id="" value="{!! $company->company_web !!}" required>
                             <h5>Company address</h5>
-                            <input type="text" name="address" class="form-control" id="" required>
+                            <input type="text" name="address" class="form-control" id="" value="{!! $company->company_address !!}" required>
                             <h5>Company code</h5>
-                            <input type="text" name="code" class="form-control" id="" required>
+                            <input type="text" name="code" class="form-control" id="" value="{!! $company->company_code !!}" required>
                             <h5>Company phone</h5>
-                            <input type="tel" name="phone" class="form-control" id="" required>
+                            <input type="tel" name="phone" class="form-control" id="" value="{!! $company->company_phone !!}" required>
+                            @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -106,44 +158,12 @@
             </div>
         </div>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th class="scope">Company_name</th>
-                <th class="scope">Company_web</th>
-                <th class="scope">Company_address</th>
-                <th class="scope">Company_code</th>
-                <th class="scope">Company_phone</th>
-                <th class="scope" colspan="2">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($companies as $company):
-                <tr>
-                    <td>
-                        <p>{{ $company->company_name }}</p>
-                    </td>
-                    <td>
-                        <p>{{ $company->company_web }}</p>
-                    </td>
-                    <td>
-                        <p>{{ $company->company_address }}</p>
-                    </td>
-                    <td>
-                        <p>{{ $company->company_code }}</p>
-                    </td>
-                    <td>
-                        <p>{{ $company->company_phone }}</p>
-                    </td>
-                    <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formEditCompany">
-                            Edit
-                        </button></td>
-                    <td> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#formDeleteCompany">
-                            Delete
-                        </button></td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <?php echo $companies->render(); ?>
+ 
 @endsection
+{{-- <script>
+    const edit = document.querySelector("#edit");
+    edit.addEventListener('click',function(){
+        const custId = document.querySelector("#custId");
+        
+    })  
+</script> --}}
