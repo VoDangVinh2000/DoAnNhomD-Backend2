@@ -42,8 +42,9 @@
                     <td>
                         <p>{{ $company->company_phone }}</p>
                     </td>
-                    <?php $id = $company['company_id'];?>
-                    <input type="hidden" id="custId" name="custId" value=" <?php echo $company['company_id'];?>">
+                    <?php 
+                    $array_id[] = $company['company_id'];?>
+                    
                     <td> <button type="button" id="edit" class="btn btn-primary" data-toggle="modal" data-target="#formEditCompany">
                             Edit
                             
@@ -53,7 +54,7 @@
                         </button></td>
                 </tr>
             @endforeach
-
+                
         </tbody>
     </table>
     <?php echo $companies->render(); ?>
@@ -97,7 +98,7 @@
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="" method="post">
+                <form action="{{ route('editCompanies')}}" method="post">
                     @csrf
 
                     <div class="modal-header">
@@ -109,26 +110,32 @@
                     <div class="modal-body">
                         <div class="form-group">
                            
-                            @foreach($companies as $company)
-
-                            @if($company['company_id'] == 1)
+                            @foreach($companies as $company)                           
+                           @if($company['company_id'] == 2)
+                           <input type="hidden" class="form-control"  name="company_id" value="{!! $company['company_id'] !!}">
                             <h5>Company name</h5>
-                            <input type="text" class="form-control" name="name" id="" value="{!! $company['company_name'] !!}" required>
+                            <input type="text" class="form-control" name="company_name" id="" value="{!! $company['company_name'] !!}" required>
                             <h5>Company web</h5>
-                            <input type="text" name="web" class="form-control" id="" value="{!! $company->company_web !!}" required>
+                            <input type="text" name="company_web" class="form-control" id="" value="{!! $company->company_web !!}" required>
                             <h5>Company address</h5>
-                            <input type="text" name="address" class="form-control" id="" value="{!! $company->company_address !!}" required>
+                            <input type="text" name="company_address" class="form-control" id="" value="{!! $company->company_address !!}" required>
                             <h5>Company code</h5>
-                            <input type="text" name="code" class="form-control" id="" value="{!! $company->company_code !!}" required>
+                            <input type="text" name="company_code" class="form-control" id="" value="{!! $company->company_code !!}" required>
                             <h5>Company phone</h5>
-                            <input type="tel" name="phone" class="form-control" id="" value="{!! $company->company_phone !!}" required>
-                            @endif
+                            <input type="tel" name="company_phone" class="form-control" id="" value="{!! $company->company_phone !!}" required>
+                            {{-- <input type="submit" value="Edit" style="margin-top:49px;margin-left:330px;position: absolute;padding:6px 20px;" class="btn btn-success" name="submitEdit"> --}}
+                            {{-- //<a href="companies/" style="margin-top:49px;margin-left:330px;position: absolute;padding:6px 20px;" class="btn btn-success">Edit</a> --}}
+                           @endif
+                           
                             @endforeach
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                       
+                       
                         <input type="submit" value="Edit" class="btn btn-success" name="submitEdit">
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    
                     </div>
                 </form>
             </div>
