@@ -87,7 +87,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <input type="hidden" name="idEdit" value="">
+                                <input type="hidden" name="idEdit" value="{{old('idEdit')}}">
                                 <h5>Company name</h5>
                                 @if ($errors->has('nameEdit'))
                                     <p class="error" style="color: red">{{ $errors->first('nameEdit') }}</p>

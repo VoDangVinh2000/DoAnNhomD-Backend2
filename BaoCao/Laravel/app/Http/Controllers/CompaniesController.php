@@ -61,6 +61,7 @@ class CompaniesController extends Controller
             }
             else {
                 $companies = Companies::find($res->input('idEdit'));
+                dd($res->input('idEdit'));
                 $companies->company_name = $res->input('nameEdit');
                 $companies->company_code = $res->input('codeEdit');
                 $companies->company_phone =  $res->input('phoneEdit');
