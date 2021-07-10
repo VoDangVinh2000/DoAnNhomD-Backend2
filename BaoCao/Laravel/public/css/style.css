@@ -110,7 +110,10 @@ h1.h-title{
     border-bottom: 2px solid #333;
     display: inline-block;
     text-transform: uppercase;
+    font-size: 50px;
+    font-weight: 600;
     letter-spacing: 2px;
+    font-family: 'Baloo Tamma 2', cursive;
 }
 
 .radio{

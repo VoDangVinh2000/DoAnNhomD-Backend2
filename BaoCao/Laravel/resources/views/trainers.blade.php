@@ -154,5 +154,6 @@
 </table>
 <?php echo $trainers->render() ?>
 @endsection
+@section('title',' Trainer')
 
 

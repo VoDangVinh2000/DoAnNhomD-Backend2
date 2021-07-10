@@ -129,7 +129,6 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-
                                         <h5>Company name</h5>
                                         <input type="text" class="form-control" name="edit-name" value="{{$company->company_name}}" required>
                                         <h5>Company web</h5>
@@ -155,3 +154,4 @@
     </table>
     <?php echo $companies->render(); ?>
 @endsection
+@section('title','Companies')

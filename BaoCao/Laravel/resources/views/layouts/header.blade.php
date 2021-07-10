@@ -1,6 +1,6 @@
 
 @if (Session::has('username'))
-    <h4 class="user-wel">Xin chào: {{ Session::get('username') }}</h4>
+    <h4 class="user-wel">User: {{ Session::get('username') }}</h4>
     <a class="log-out" href="{{ route('signout') }}"><i class="fas fa-sign-out-alt"></i></a>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
@@ -12,9 +12,6 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/companies">Home <span class="sr-only">(current)</span></a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="{{ route('signout') }}">Logout</a>
-                </li> --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Danh mục</a>
