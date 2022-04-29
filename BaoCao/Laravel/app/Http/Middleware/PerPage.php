@@ -27,16 +27,16 @@ class PerPage
             return redirect('error');
         }
         if($perPage < 10){
-            $perPage = 10;
+            $perPage = 5;
         }
         else if($perPage > 10 && $perPage < 30){
-            $perPage = 30;
+            $perPage = 5;
         }
         else if($perPage > 30 && $perPage < 50){
-            $perPage  = 50;
+            $perPage  = 5;
         }
         else if($perPage > 50){
-            $perPage = 50;
+            $perPage = 5;
         }
         $request->merge([ 'per_page' => $perPage]);
         return $next($request);

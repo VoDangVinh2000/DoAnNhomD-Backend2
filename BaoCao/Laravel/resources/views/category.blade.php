@@ -8,6 +8,7 @@
         </tr>
     </thead>
     <tbody>
+        <!--asds!-->
             @foreach($categories as $array):
             <tr>
                 <td><p>{{$array->category_id}}</p></td>

@@ -1,5 +1,5 @@
 @if (Session::has('username'))
-    <h4>Xin chào :{{ Session::get('username') }}</h4>
+    <h5 class="xinchao">Xin chào :{{ Session::get('username') }}</h5>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,12 +7,10 @@
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('signout') }}">Logout</a>
-                </li>
+                {{-- <li class="nav-item active">
+                    <a class="nav-link" href="{{route('companies')}}">Home<span class="sr-only">(current)</span></a>
+                </li> --}}
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Danh mục</a>
@@ -23,7 +21,9 @@
                         <a class="dropdown-item" href="/category">Category</a>
                     </div>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('signout') }}">Đăng xuất</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="" method="get">
                 <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search">
