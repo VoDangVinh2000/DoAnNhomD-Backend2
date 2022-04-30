@@ -18,6 +18,8 @@ Route::fallback(function(){
     return 'Not found';
 });
 Route::get('category',[CategoriesController::class,'getCategory'])->middleware('per_page');
+//Crud companies
+Route::post('addCompanies', [CompaniesController::class, 'addCompanies'])->name('addCompanies');
 // Route:
 //authentication
 Route::get('dashboard', [CustomAuthController::class, 'dashboard']);
@@ -26,3 +28,5 @@ Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name(
 Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
+
+

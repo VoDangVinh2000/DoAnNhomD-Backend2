@@ -17,7 +17,7 @@ class CompaniesController extends Controller
         $obj = new Companies();
         $companies = $obj->paginate($per_page);
          $name = $request->get('search');
-         $companies = $obj->where('company_name','like',"%$name%")->paginate($per_page);
+         $companies = $obj->where('company_name','like',"%$name%")->orderBy('created_at','DESC')->paginate($per_page);
          $companies->appends(['search' => $name]);
         return view('companies',['companies' => $companies]);
     }
@@ -28,5 +28,28 @@ class CompaniesController extends Controller
         else{
             return redirect('/login');
         }
+    }
+    protected function addCompanies(Request $res){
+        if($res->isMethod('POST')){
+            $name = $res->name;
+            $web = $res->web;
+            $address = $res->address;
+            $code = $res->code;
+            $phone  = $res->phone;
+            $companies = Companies::create([
+                'company_name' => $name,
+                'company_web' =>$web,
+                'company_address' =>$address,
+                'company_code' =>$code,
+                'company_phone' => $phone,
+                'company_image' => "",
+                'timestamp' => now()
+            ]);
+            return redirect('companies');
+        }
+        else{
+            return redirect('/companies');
+        }
+
     }
 }
